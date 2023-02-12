@@ -7,4 +7,5 @@
 4. UnDirected graph
 
 ## Algorithms covered in this Repo.
-1. Adjacency List Representation.
+1. Adjacency Matrix
+2. Adjacency List Representation
