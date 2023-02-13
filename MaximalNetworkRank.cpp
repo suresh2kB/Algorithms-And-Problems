@@ -33,7 +33,7 @@ void solve()
         {
             if (i != j)
             {
-                if (deg[i] + deg[j] - Adj[i][j] > networkRank)
+                if (Adj[i][j] == 1 && deg[i] + deg[j] - Adj[i][j] > networkRank)
                 {
                     networkRank = deg[i] + deg[j] - Adj[i][j];
                 }
