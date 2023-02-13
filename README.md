@@ -6,6 +6,10 @@
 3. Directed graph
 4. UnDirected graph
 
-## Algorithms covered in this Repo.
+## Algorithms covered in this repo.
 1. Adjacency Matrix
 2. Adjacency List Representation
+
+## Questions covered in this repo.
+1. Find center of Start graph
+2. Maximal network rank
