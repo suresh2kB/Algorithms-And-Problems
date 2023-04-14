@@ -6,8 +6,10 @@ using namespace std;
 
 const int N = 1e5 + 1;
 vector<int> adj[N];
+int tin[N], tout[N];
+int tme = 0;
 
-void dfs(int u, int p)
+void eularCycle1(int u, int p) // Length = 2*number of nodes.
 {
     cout << u << " ";
 
@@ -15,11 +17,40 @@ void dfs(int u, int p)
     {
         if (v != p)
         {
-            dfs(v, u);
+            eularCycle1(v, u);
         }
     }
     cout << u << " ";
 }
+
+void eularCycle2(int u, int p) // Length = number of nodes + number of edges.
+{
+    cout << u << " ";
+
+    for (int v : adj[u])
+    {
+        if (v != p)
+        {
+            eularCycle2(v, u);
+            cout << u << " ";
+        }
+    }
+}
+
+void eularCycle3(int u, int p) // Length = number of nodes + number of edges.
+{
+    tin[u] = ++tme;
+    for (int v : adj[u])
+    {
+        if (v != p)
+        {
+            eularCycle3(v, u);
+        }
+    }
+
+    tout[u] = tme;
+}
+
 void solve()
 {
     int n;
@@ -32,7 +63,27 @@ void solve()
         adj[v].push_back(u);
     }
 
-    dfs(1, 0);
+    // eularCycle1(1, 0);
+    // cout << endl;
+    // eularCycle2(1, 0);
+    tme = 0;
+    eularCycle3(1, 0);
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout << tin[i] << " ";
+    }
+    cout << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << tout[i] << " ";
+    }
 }
 
 int main()
