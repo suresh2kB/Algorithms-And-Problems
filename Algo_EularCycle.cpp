@@ -8,6 +8,7 @@ const int N = 1e5 + 1;
 vector<int> adj[N];
 int tin[N], tout[N];
 int tme = 0;
+int flat[N], faltIn[N], flatOut[N];
 
 void eularCycle1(int u, int p) // Length = 2*number of nodes.
 {
@@ -71,18 +72,21 @@ void solve()
 
     for (int i = 1; i <= n; i++)
     {
-        cout << i << " ";
+        flat[tin[i]] = i;
     }
-    cout << endl;
-
     for (int i = 1; i <= n; i++)
     {
-        cout << tin[i] << " ";
+        cout << flat[i] << " ";
     }
     cout << endl;
     for (int i = 1; i <= n; i++)
     {
-        cout << tout[i] << " ";
+        cout << tin[flat[i]] << " ";
+    }
+    cout << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << tout[flat[i]] << " ";
     }
 }
 
