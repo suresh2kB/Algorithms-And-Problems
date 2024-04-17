@@ -1,6 +1,8 @@
 /**
  *    author:  Suresh Kumar
  **/
+
+Question: Find distance between two nodes u and v when path between them passes through k.
 #include <bits/stdc++.h>
 using namespace std;
 
