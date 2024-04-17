@@ -1,6 +1,9 @@
 /**
  *    author:  Suresh Kumar
  **/
+
+Question: Check if two points are in same island or not.
+    
 #include <bits/stdc++.h>
 using namespace std;
 vector<vector<int>> grid, vis;
