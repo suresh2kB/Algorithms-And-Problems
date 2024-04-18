@@ -1,6 +1,8 @@
 /**
  *    author:  Suresh Kumar
  **/
+
+Question: Find the edge which can be removed and still graph is a valid tree.
 #include <bits/stdc++.h>
 using namespace std;
 vector<vector<int>> adj;
