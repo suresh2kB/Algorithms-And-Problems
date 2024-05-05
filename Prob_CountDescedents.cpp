@@ -1,3 +1,138 @@
+We have a rooted tree with 
+N vertices, numbered 
+1,2,…,N.
+
+Vertex 
+1 is the root, and the parent of Vertex 
+i(2≤i≤N) is Vertex 
+P 
+i
+​
+ .
+
+You are given 
+Q queries. In the 
+i-th query 
+(1≤i≤Q), given integers 
+U 
+i
+​
+  and 
+D 
+i
+​
+ , find the number of vertices 
+u that satisfy all of the following conditions:
+
+Vertex 
+U 
+i
+​
+  is in the shortest path from 
+u to the root (including the endpoints).
+There are exactly 
+D 
+i
+​
+  edges in the shortest path from 
+u to the root.
+Constraints
+2≤N≤2×10 
+5
+ 
+1≤P 
+i
+​
+ <i
+1≤Q≤2×10 
+5
+ 
+1≤U 
+i
+​
+ ≤N
+0≤D 
+i
+​
+ ≤N−1
+All values in input are integers.
+Input
+Input is given from Standard Input in the following format:
+
+N
+P 
+2
+​
+  
+P 
+3
+​
+  
+… 
+P 
+N
+​
+ 
+Q
+U 
+1
+​
+  
+D 
+1
+​
+ 
+U 
+2
+​
+  
+D 
+2
+​
+ 
+⋮
+U 
+Q
+​
+  
+D 
+Q
+​
+ 
+Output
+Print 
+Q lines. The 
+i-th line should contain the response to the 
+i-th query.
+
+Sample Input 1
+Copy
+7
+1 1 2 2 4 2
+4
+1 2
+7 2
+4 1
+5 5
+Sample Output 1
+Copy
+3
+1
+0
+0
+In the 
+1-st query, Vertices 
+4, 
+5, and 
+7 satisfy the conditions. In the 
+2-nd query, only Vertices 
+7 satisfies the conditions. In the 
+3-rd and 
+4-th queries, no vertice satisfies the conditions.
+
+
+
+    
 /**
  *    author:  Suresh Kumar
  **/
