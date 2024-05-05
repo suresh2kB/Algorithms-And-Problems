@@ -1,3 +1,11 @@
+The road network of a state needs to be rebuilt.There are various cities in the state represented by a unique number. You are assigned a job to build the roads.Roads must be built in such a way that all the cities are connected to each other(either directly or indirectly) and the total length of the new roads that has to be built is least.You are provided with the distance between certain pairs of cities.Find out the least possible total length of the roads that need to be laid.
+
+INPUT First line contains an integer k specifying the number of pairs of cities whose inter-city distance is given to you. Next k lines contain 3 space separated integers q1 q2 and d. q1 is city number of first city. q2 is city number of second city. d represents the distance between the two cities.
+
+OUTPUT Print the least possible total length of the roads that need to be laid.
+
+CONSTRAINTS 0 < k <= 10^5 0 < d <= 1000 0 < q1,q2 <= 10^5
+    
 /**
  *    author:  Suresh Kumar
  **/
