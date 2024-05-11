@@ -1,6 +1,8 @@
 /**
  *    author:  Suresh Kumar
  **/
+
+Question: Check if this graph is a strongly connected component.
 #include <bits/stdc++.h>
 using namespace std;
 
