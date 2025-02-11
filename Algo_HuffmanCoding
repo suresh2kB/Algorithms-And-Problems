@@ -1,0 +1,124 @@
+#include <iostream>
+#include <queue>
+#include <unordered_map>
+
+using namespace std;
+
+// Huffman tree node
+struct Node {
+    char ch;
+    int freq;
+    Node* left;
+    Node* right;
+
+    Node(char c, int f) : ch(c), freq(f), left(nullptr), right(nullptr) {}
+};
+
+// Comparator for priority queue (min-heap)
+struct Compare {
+    bool operator()(Node* a, Node* b) {
+        return a->freq > b->freq;
+    }
+};
+
+// Function to generate Huffman codes
+void generateHuffmanCodes(Node* root, string code, unordered_map<char, string>& huffmanCode) {
+    if (!root) return;
+    
+    // If it's a leaf node, store the code
+    if (!root->left && !root->right) {
+        huffmanCode[root->ch] = code;
+    }
+
+    generateHuffmanCodes(root->left, code + "0", huffmanCode);
+    generateHuffmanCodes(root->right, code + "1", huffmanCode);
+}
+
+// Function to build the Huffman Tree and return the root
+Node* buildHuffmanTree(const unordered_map<char, int>& freqMap) {
+    priority_queue<Node*, vector<Node*>, Compare> minHeap;
+
+    // Step 1: Insert all characters into min-heap
+    for (auto pair : freqMap) {
+        minHeap.push(new Node(pair.first, pair.second));
+    }
+
+    // Step 2: Build Huffman Tree
+    while (minHeap.size() > 1) {
+        Node* left = minHeap.top(); minHeap.pop();
+        Node* right = minHeap.top(); minHeap.pop();
+
+        // Merge two nodes
+        Node* merged = new Node('\0', left->freq + right->freq);
+        merged->left = left;
+        merged->right = right;
+
+        minHeap.push(merged);
+    }
+
+    return minHeap.top(); // Root of Huffman Tree
+}
+
+// Function to encode a string using Huffman coding
+string encode(const string& text, unordered_map<char, string>& huffmanCode) {
+    string encodedString = "";
+    for (char ch : text) {
+        encodedString += huffmanCode[ch];
+    }
+    return encodedString;
+}
+
+// Function to decode a Huffman encoded string
+string decode(Node* root, const string& encodedStr) {
+    string decodedString = "";
+    Node* current = root;
+
+    for (char bit : encodedStr) {
+        if (bit == '0') {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
+
+        // If it's a leaf node, append the character and restart
+        if (!current->left && !current->right) {
+            decodedString += current->ch;
+            current = root;
+        }
+    }
+
+    return decodedString;
+}
+
+int main() {
+    string text = "huffman coding is a compression algorithm";
+
+    // Step 1: Compute frequency of characters
+    unordered_map<char, int> freqMap;
+    for (char ch : text) {
+        freqMap[ch]++;
+    }
+
+    // Step 2: Build Huffman Tree
+    Node* root = buildHuffmanTree(freqMap);
+
+    // Step 3: Generate Huffman Codes
+    unordered_map<char, string> huffmanCode;
+    generateHuffmanCodes(root, "", huffmanCode);
+
+    // Display Huffman Codes
+    cout << "Huffman Codes:\n";
+    for (auto pair : huffmanCode) {
+        cout << pair.first << " -> " << pair.second << endl;
+    }
+
+    // Step 4: Encode the input text
+    string encodedText = encode(text, huffmanCode);
+    cout << "\nEncoded Text: " << encodedText << endl;
+
+    // Step 5: Decode the encoded text
+    string decodedText = decode(root, encodedText);
+    cout << "\nDecoded Text: " << decodedText << endl;
+
+    return 0;
+}
